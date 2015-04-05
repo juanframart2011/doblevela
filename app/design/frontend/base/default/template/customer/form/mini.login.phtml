@@ -1,0 +1,105 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2014 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+?>
+<style>
+    .url_minilogin:hover{
+        color:blue !important;
+    }
+    #dropdown{
+        background: #a9bcd4;
+        display: none;
+        padding: 10px;
+        position: absolute;
+        z-index: 2;
+    }
+</style>
+<div class="block block-login" id="dropdown">
+    
+    <?/*
+    <div class="block-title">
+        <strong><span><?php echo $this->__('Login') ?></span></strong>
+        <?php echo $this->getUrl('customer/account/loginPost') ?>
+    </div>*/?>
+    <form action="<?php echo Mage::helper('customer')->getLoginPostUrl(); ?>" id="form_mini_login" method="post" name="form_mini_login">
+        <?php echo $this->getBlockHtml('formkey'); ?>
+        <div class="block-content" style="padding: 0px 5px !important;">
+            <label for="mini-login"><?php echo $this->__('Email:') ?></label>
+            <input type="text" name="login[username]" id="mini-login" class="input-text" placeholder="Email"/>
+            <label for="mini-password"><?php echo $this->__('Password:') ?></label>
+            <input type="password" name="login[password]" id="mini-password" class="input-text" placeholder="Contraseña"/>
+            <div class="actions" style="margin: 5px 87px 0px 0px !important;">
+                <button type="submit" class="button" id="button_form_mini_login">
+                    <span>
+                        <span style="background:#122c52 !important;color:white !important;padding:5px !important;height:30px !important;line-height:45px !important;margin-top:-14px !important;width:70px !important;">Acceder</span>
+                    </span>
+                </button>
+            </div>
+            <div style="margin-left:10px;">
+                <a class="url_minilogin" onclick="javascript:location.href='<?php echo $this->getUrl(); ?>customer/account/forgotpassword/'" href="<?php echo $this->getUrl(); ?>customer/account/forgotpassword/" style="color:white;">
+                    ¿Olvidaste tu contraseña?
+                </a><br>
+                <a class="url_minilogin" onclick="javascript:location.href='<?php echo $this->getUrl(); ?>customer/account/create/'" href="<?php echo $this->getUrl(); ?>customer/account/create/" style="color:white;">Registrate</a>
+            </div>
+        </div>
+    </form>
+</div>
+<script>
+
+    document.getElementById('top-link-login').addEventListener('click',function(evento){
+        //prevenimos que se ejecute el código asignado al enlace
+        evento.preventDefault();
+        document.getElementById("dropdown").style.display="block";
+        document.getElementById("cerrar_x_minilogin").style.display="block";
+    });
+
+    document.getElementById("cerrar_x_minilogin").addEventListener('click',function(eventos){
+        //prevenimos que se ejecute el código asignado al enlace
+        eventos.preventDefault();
+        document.getElementById("dropdown").style.display="none";
+        document.getElementById("cerrar_x_minilogin").style.display="none";
+    });
+
+    document.getElementById("button_form_mini_login").addEventListener('click',function(eventos){
+
+        eventos.preventDefault();
+
+        document.getElementById("mini-login").style.border="1px #ccc solid";
+        document.getElementById("mini-password").style.border="1px #ccc solid";
+
+        if( document.getElementById("mini-login").value == "" ){
+
+            document.getElementById("mini-login").style.border="1px red solid";
+        }
+        else if( document.getElementById("mini-password").value == "" ){
+
+            document.getElementById("mini-password").style.border="1px red solid";
+        }
+        else{
+
+            document.form_mini_login.submit();
+        }
+    });
+</script>

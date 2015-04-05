@@ -1,0 +1,8 @@
+como insertar el submenu de categorias de productos
+<p>{{block type="ultramegamenu/navigation" parent="root" depth="2" block_name="CMS TEST menu" template="infortis/ultramegamenu/categories.phtml"}}</p>
+
+Comenzar desde la ruta padre e invocar alguna imagen
+ejemplo:
+<?php echo $this->getUrl(); ?>../skin/frontend/fortis/default/images/header.png
+
+You may also be interested in the following product(s)

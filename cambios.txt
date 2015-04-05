@@ -1,0 +1,4 @@
+subir carpeta: skin/adminhtml/default/default/images/
+subir archivo: app/design/adminhtml/default/template/page/header.php
+subir archivo: app/design/adminhtml/default/template/page/footer.php
+subir archivo: skin/adminhtml/default/default/boxes.css
